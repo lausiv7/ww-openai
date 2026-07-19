@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harbor & Pine - Boutique Hotel Booking MVP</title>
+  <meta name="description" content="Boutique hotel booking web app MVP with mock login, room booking, test payment, guest memo, and operator dashboard.">
+  <style>
+    :root {
+      --ink: #17211c;
+      --muted: #66736d;
+      --paper: #f5efe4;
+      --surface: #fffaf1;
+      --line: #e5dac8;
+      --deep: #13392f;
+      --accent: #d98342;
+      --sky: #b9d7d5;
+      --sage: #d9e4d6;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    .topbar { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line); background: rgb(245 239 228 / 92%); backdrop-filter: blur(18px); }
+    .topbar .shell { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 950; letter-spacing: -.045em; }
+    .brand mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 999px; background: var(--deep); color: #fff; }
+    .nav { display: flex; align-items: center; gap: 18px; color: #38534a; font-size: 14px; font-weight: 850; }
+    .nav button { border: 0; background: transparent; color: inherit; padding: 0; font-weight: 850; }
+    .pill { border: 1px solid var(--line); border-radius: 999px; background: #fff; padding: 11px 15px; color: var(--deep); font-weight: 950; }
+    .hero { display: grid; grid-template-columns: 1fr .95fr; gap: 42px; align-items: center; min-height: 640px; padding: 58px 0; }
+    .kicker { margin: 0 0 15px; color: var(--accent); font-size: 12px; font-weight: 950; letter-spacing: .2em; text-transform: uppercase; }
+    h1 { margin: 0; max-width: 720px; font-size: clamp(56px, 8vw, 110px); line-height: .88; letter-spacing: -.085em; }
+    h1 em { color: var(--accent); font-style: normal; }
+    .lead { margin: 26px 0 0; max-width: 560px; color: #536159; font-size: 20px; line-height: 1.65; font-weight: 700; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 32px; }
+    .primary { border: 0; border-radius: 999px; background: var(--deep); color: #fff; padding: 15px 21px; font-weight: 950; box-shadow: 0 20px 44px rgb(19 57 47 / 16%); }
+    .secondary { border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--deep); padding: 14px 18px; font-weight: 900; }
+    .visual { display: grid; gap: 16px; }
+    .photo { min-height: 380px; border-radius: 36px; overflow: hidden; background:
+      linear-gradient(135deg, rgb(19 57 47 / 16%), rgb(217 131 66 / 16%)),
+      url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1400&q=80") center/cover;
+      box-shadow: 0 36px 80px rgb(23 33 28 / 18%);
+    }
+    .booking-card { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; border: 1px solid var(--line); border-radius: 26px; background: var(--surface); padding: 14px; box-shadow: 0 18px 44px rgb(23 33 28 / 8%); }
+    .booking-card span { display: block; color: var(--muted); font-size: 12px; font-weight: 850; }
+    .booking-card b { display: block; margin-top: 5px; color: var(--deep); font-size: 14px; }
+    .strip { border-block: 1px solid var(--line); background: #fff7e9; }
+    .strip .shell { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 22px 0; }
+    .strip span { font-weight: 850; color: #39544c; }
+    .strip b { margin-right: 8px; color: var(--accent); }
+    section { padding: 72px 0; }
+    .section-head { display: flex; justify-content: space-between; gap: 24px; align-items: end; margin-bottom: 30px; }
+    .section-head h2 { margin: 0; font-size: clamp(38px, 5vw, 68px); line-height: .96; letter-spacing: -.065em; }
+    .section-head p { margin: 0; max-width: 380px; color: var(--muted); font-size: 17px; line-height: 1.65; font-weight: 750; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .room { border: 1px solid var(--line); border-radius: 30px; background: var(--surface); overflow: hidden; box-shadow: 0 18px 44px rgb(23 33 28 / 7%); }
+    .room-img { min-height: 240px; background: var(--img) center/cover; }
+    .room-body { padding: 22px; }
+    .room h3 { margin: 8px 0 8px; font-size: 25px; letter-spacing: -.04em; }
+    .room p { min-height: 54px; margin: 0; color: var(--muted); line-height: 1.55; font-weight: 700; }
+    .room-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 20px; }
+    .price { font-size: 20px; font-weight: 950; }
+    .tag { color: var(--accent); font-size: 12px; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
+    .workflow { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .panel { border: 1px solid var(--line); border-radius: 30px; background: #fffaf2; padding: 24px; }
+    .panel h3 { margin: 0 0 12px; font-size: 31px; line-height: 1.05; letter-spacing: -.055em; }
+    .panel p { color: var(--muted); line-height: 1.6; font-weight: 720; }
+    .status-list { display: grid; gap: 10px; margin-top: 18px; }
+    .status-row { display: flex; justify-content: space-between; gap: 12px; padding: 14px; border-radius: 18px; background: #f1e7d7; color: #38544a; font-weight: 850; }
+    .dashboard { display: grid; gap: 12px; }
+    .booking { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; border: 1px solid var(--line); border-radius: 22px; background: #fff; padding: 14px; }
+    .booking strong { display: block; }
+    .booking small { display: block; margin-top: 4px; color: var(--muted); font-weight: 750; }
+    .modal-backdrop { position: fixed; inset: 0; z-index: 40; display: grid; place-items: end center; padding: 18px; background: rgb(19 57 47 / 42%); backdrop-filter: blur(8px); }
+    .modal { width: min(620px, 100%); max-height: min(760px, calc(100vh - 36px)); overflow: auto; border: 1px solid var(--line); border-radius: 30px; background: #fffaf2; box-shadow: 0 30px 90px rgb(23 33 28 / 28%); animation: rise .18s ease-out; }
+    .modal-head { display: flex; align-items: start; justify-content: space-between; gap: 16px; padding: 24px 24px 0; }
+    .modal-head h3 { margin: 0; font-size: 31px; line-height: 1.05; letter-spacing: -.055em; }
+    .modal-close { border: 1px solid var(--line); border-radius: 999px; background: #fff; width: 38px; height: 38px; font-weight: 950; }
+    .modal-body { display: grid; gap: 14px; padding: 20px 24px 24px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    label { display: grid; gap: 7px; color: #34564a; font-size: 13px; font-weight: 950; }
+    input, select, textarea { width: 100%; border: 1px solid var(--line); border-radius: 16px; background: #fff; padding: 13px 14px; color: var(--ink); outline: 0; }
+    textarea { min-height: 92px; resize: vertical; grid-column: 1 / -1; }
+    .line { display: flex; justify-content: space-between; gap: 12px; padding: 13px 0; border-bottom: 1px dashed var(--line); color: #3f5b52; font-weight: 850; }
+    .line strong { color: var(--ink); }
+    .modal-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+    .toast { position: fixed; left: 50%; bottom: 24px; z-index: 50; transform: translateX(-50%); display: none; border-radius: 999px; background: var(--deep); color: #fff; padding: 13px 18px; font-weight: 900; box-shadow: 0 18px 44px rgb(23 33 28 / 22%); }
+    footer { border-top: 1px solid var(--line); padding: 42px 0; color: var(--muted); }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 860px) {
+      .nav a { display: none; }
+      .hero, .workflow { grid-template-columns: 1fr; }
+      .hero { min-height: 0; padding-top: 42px; }
+      h1 { font-size: clamp(48px, 13vw, 64px); line-height: .96; }
+      .booking-card, .strip .shell, .grid, .form-grid { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .section-head p { margin-top: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell">
+      <a class="brand" href="#top"><mark>H</mark><span>Harbor & Pine</span></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#rooms">Rooms</a>
+        <button type="button" onclick="openLoginModal()">Member login</button>
+        <a href="#dashboard">Dashboard</a>
+        <button class="pill" type="button" onclick="openBookingModal()">Book a room</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="shell hero">
+      <div>
+        <p class="kicker">Boutique hotel booking app</p>
+        <h1>Quiet harbor stays,<br><em>managed in one app.</em></h1>
+        <p class="lead">A consumer-grade hotel web app for room browsing, member login, reservation requests, test payment, guest notes, and operator follow-up.</p>
+        <div class="hero-actions">
+          <button class="primary" type="button" onclick="openBookingModal()">Start reservation</button>
+          <button class="secondary" type="button" onclick="openLoginModal()">Mock member login</button>
+          <span class="tag">No real payment · demo only</span>
+        </div>
+      </div>
+      <div class="visual">
+        <div class="photo" role="img" aria-label="Boutique hotel with harbor view"></div>
+        <div class="booking-card">
+          <div><span>Check-in</span><b>Oct 10</b></div>
+          <div><span>Check-out</span><b>Oct 12</b></div>
+          <div><span>Guests</span><b>2 adults</b></div>
+          <div><span>Status</span><b id="heroStatus">Ready</b></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="strip">
+      <div class="shell">
+        <span><b>01</b> Room catalog and guest intent</span>
+        <span><b>02</b> Mock login and test payment layer</span>
+        <span><b>03</b> Operator dashboard with booking records</span>
+      </div>
+    </div>
+
+    <section class="shell" id="rooms">
+      <div class="section-head">
+        <div><p class="kicker">Rooms</p><h2>Choose a room,<br>then request the stay.</h2></div>
+        <p>Rooms are real app objects. Selecting one passes data into the reservation and checkout workflow.</p>
+      </div>
+      <div class="grid" id="roomGrid"></div>
+    </section>
+
+    <section class="shell" id="workflow">
+      <div class="section-head">
+        <div><p class="kicker">Guest flow</p><h2>Not a static page.<br>A working booking flow.</h2></div>
+        <p>Login, booking, payment, and dashboard surfaces stay hidden until the related action happens.</p>
+      </div>
+      <div class="workflow">
+        <article class="panel">
+          <h3>Guest journey</h3>
+          <p>Browse rooms, log in, submit stay details, run a test payment, and receive a mock reservation status.</p>
+          <div class="status-list">
+            <div class="status-row"><span>Member</span><b id="memberStatus">Guest mode</b></div>
+            <div class="status-row"><span>Payment</span><b id="paymentStatus">Not started</b></div>
+            <div class="status-row"><span>Reservation</span><b id="reservationStatus">No request</b></div>
+          </div>
+        </article>
+        <article class="panel" id="dashboard">
+          <h3>Operator dashboard</h3>
+          <p>Booking records appear here after submission. Production can replace this mock store with Supabase and email/payment webhooks.</p>
+          <div class="dashboard" id="bookingList"></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <a class="brand" href="#top"><mark>H</mark><span>Harbor & Pine</span></a>
+      <p>WindWalker hotel booking MVP. mock_auth, reservation_request, test_payment, guest_memo, operator_dashboard.</p>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+  <div id="modalRoot"></div>
+
+  <script>
+    const rooms = [
+      { id: 'harbor-suite', name: 'Harbor Suite', price: 320, image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80', desc: 'Sea-facing suite with lounge, soaking tub, and terrace breakfast.', tag: 'Best for couples' },
+      { id: 'garden-studio', name: 'Garden Studio', price: 240, image: 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80', desc: 'Quiet studio facing the pine garden with warm evening light.', tag: 'Pet-friendly' },
+      { id: 'family-loft', name: 'Family Loft', price: 380, image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80', desc: 'Two-level stay for families who need flexible sleeping space.', tag: 'Up to 4 guests' }
+    ];
+    let selectedRoom = rooms[0];
+    let isLoggedIn = false;
+    let memberEmail = 'devpost-guest@example.com';
+    let bookings = [];
+    const $ = (id) => document.getElementById(id);
+
+    function showToast(message) {
+      const toast = $('toast');
+      toast.textContent = message;
+      toast.style.display = 'block';
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => { toast.style.display = 'none'; }, 1800);
+    }
+    function usd(value) { return `USD ${value}/night`; }
+    function renderRooms() {
+      $('roomGrid').innerHTML = rooms.map((room) => `
+        <article class="room">
+          <div class="room-img" style="--img:url('${room.image}')"></div>
+          <div class="room-body">
+            <span class="tag">${room.tag}</span>
+            <h3>${room.name}</h3>
+            <p>${room.desc}</p>
+            <div class="room-row">
+              <strong class="price">${usd(room.price)}</strong>
+              <button class="primary" type="button" onclick="selectRoom('${room.id}')">Reserve</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+    function renderBookings() {
+      $('bookingList').innerHTML = bookings.length ? bookings.map((item) => `
+        <article class="booking">
+          <div>
+            <strong>${item.name} · ${item.room}</strong>
+            <small>${item.email} · ${item.dates} · ${item.memo}</small>
+          </div>
+          <button class="secondary" type="button" onclick="markConfirmed('${item.id}')">${item.status}</button>
+        </article>
+      `).join('') : '<div class="status-row"><span>No booking yet</span><b>Waiting</b></div>';
+    }
+    function syncStatus() {
+      $('memberStatus').textContent = isLoggedIn ? memberEmail : 'Guest mode';
+      $('paymentStatus').textContent = bookings.some((item) => item.paid) ? 'Test paid' : 'Not started';
+      $('reservationStatus').textContent = bookings.length ? `${bookings.length} request saved` : 'No request';
+      $('heroStatus').textContent = bookings.length ? 'Submitted' : 'Ready';
+      renderBookings();
+    }
+    function selectRoom(id) {
+      selectedRoom = rooms.find((room) => room.id === id) || rooms[0];
+      openBookingModal();
+    }
+    function closeModal() { $('modalRoot').innerHTML = ''; }
+    function modalShell(title, kicker, body) {
+      $('modalRoot').innerHTML = `
+        <div class="modal-backdrop" role="dialog" aria-modal="true" onclick="if(event.target === this) closeModal()">
+          <section class="modal">
+            <div class="modal-head">
+              <div><p class="kicker">${kicker}</p><h3>${title}</h3></div>
+              <button class="modal-close" type="button" onclick="closeModal()" aria-label="Close">×</button>
+            </div>
+            <div class="modal-body">${body}</div>
+          </section>
+        </div>`;
+    }
+    function openLoginModal(message = '') {
+      modalShell('Member login', 'Mock auth', `
+        ${message ? `<div class="status-row"><span>${message}</span><b>Required</b></div>` : ''}
+        <p>Demo login stores a mock member email. Production can connect this step to Supabase or Google login.</p>
+        <label>Email <input id="memberEmail" value="${memberEmail}" autocomplete="email"></label>
+        <div class="modal-actions">
+          <button class="primary" type="button" onclick="completeLogin()">Complete mock login</button>
+          <button class="secondary" type="button" onclick="closeModal()">Cancel</button>
+        </div>`);
+    }
+    function completeLogin() {
+      memberEmail = $('memberEmail').value || memberEmail;
+      isLoggedIn = true;
+      closeModal();
+      syncStatus();
+      showToast('Mock member login complete');
+    }
+    function openBookingModal() {
+      modalShell('Reservation request', 'Booking workflow', `
+        <div class="line"><span>Selected room</span><strong>${selectedRoom.name}</strong></div>
+        <div class="line"><span>Starting price</span><strong>${usd(selectedRoom.price)}</strong></div>
+        <div class="form-grid">
+          <label>Name <input id="guestName" value="Devpost Guest"></label>
+          <label>Email <input id="guestEmail" value="${memberEmail}"></label>
+          <label>Stay dates <input id="stayDates" value="Oct 10 - Oct 12"></label>
+          <label>Guests <select id="guestCount"><option>2 adults</option><option>1 adult</option><option>Family of 4</option></select></label>
+          <label>Guest memo <textarea id="guestMemo">Late arrival, quiet room, breakfast preference.</textarea></label>
+        </div>
+        <div class="modal-actions">
+          <button class="primary" type="button" onclick="submitBooking()">Save request</button>
+          <button class="secondary" type="button" onclick="closeModal()">Cancel</button>
+        </div>`);
+    }
+    function submitBooking() {
+      if (!isLoggedIn) return openLoginModal('Login before booking.');
+      const item = {
+        id: `B-${Date.now()}`,
+        name: $('guestName').value || 'Guest',
+        email: $('guestEmail').value || memberEmail,
+        dates: $('stayDates').value || 'Date pending',
+        memo: $('guestMemo').value || 'No memo',
+        room: selectedRoom.name,
+        status: 'Pending',
+        paid: false
+      };
+      bookings.unshift(item);
+      closeModal();
+      syncStatus();
+      showToast('Reservation request saved');
+      openPaymentModal(item.id);
+    }
+    function openPaymentModal(id = bookings[0]?.id) {
+      const item = bookings.find((booking) => booking.id === id);
+      if (!item) return showToast('No reservation to pay.');
+      modalShell('Test payment', 'Checkout', `
+        <p>This is a test payment layer. Production can connect Toss Payments, Stripe, or another provider.</p>
+        <div class="line"><span>Reservation</span><strong>${item.room}</strong></div>
+        <div class="line"><span>Guest</span><strong>${item.email}</strong></div>
+        <div class="line"><span>Test amount</span><strong>USD ${selectedRoom.price * 2}</strong></div>
+        <div class="modal-actions">
+          <button class="primary" type="button" onclick="completePayment('${item.id}')">Complete test payment</button>
+          <button class="secondary" type="button" onclick="closeModal()">Later</button>
+        </div>`);
+    }
+    function completePayment(id) {
+      const item = bookings.find((booking) => booking.id === id);
+      if (item) {
+        item.paid = true;
+        item.status = 'Paid';
+      }
+      closeModal();
+      syncStatus();
+      showToast('Test payment complete');
+      location.hash = 'dashboard';
+    }
+    function markConfirmed(id) {
+      const item = bookings.find((booking) => booking.id === id);
+      if (item) item.status = item.status === 'Confirmed' ? 'Pending' : 'Confirmed';
+      syncStatus();
+      showToast('Operator status updated');
+    }
+    renderRooms();
+    syncStatus();
+  </script>
+</body>
+</html>

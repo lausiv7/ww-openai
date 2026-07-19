@@ -1,0 +1,10 @@
+WindWalker Builder
+https://ww2.d-tok.com/prototype?builder=1
+
+Generated Digital Content Bookstore
+https://bc955fd2.windwalker-phase2-user-apps.pages.dev
+
+Validation Summary
+test/results/1114-ui-bookstore-preview-only-2026-07-19-r21-mobile/summary.json
+test/results/1114-ui-bookstore-generate-deploy-smoke-2026-07-19-r21-mobile3/summary.json
+test/results/1114-ui-bookstore-deployed-flow-2026-07-19-r21-mobile/summary.json
