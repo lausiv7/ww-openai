@@ -1,33 +1,29 @@
 1
 00:00:00,000 --> 00:00:11,883
-WindWalker turns a natural-language business request
-into a deployed small-business web app.
+WindWalker is a GPT-powered web app builder
+for small businesses.
 
 2
 00:00:11,883 --> 00:00:31,230
-English digital-content bookstore: member login, cart,
-test checkout, purchase history, downloads, and a seller dashboard.
+A user describes the business they want to run: an English digital-content bookstore
+with member login, carts, test checkout, purchase history, downloads, and a seller dashboard.
 
 3
-00:00:31,230 --> 00:00:46,717
-The builder generates a responsive app preview beside the conversation.
-That same artifact is used for deployment.
+00:00:31,230 --> 00:00:56,240
+WindWalker turns that request into a workflow pattern, generates a responsive preview,
+and lets the user refine it through conversation before deployment to Cloudflare Pages.
 
 4
-00:00:46,717 --> 00:00:56,240
-Deploy from the builder and open the live Cloudflare Pages URL.
+00:00:56,240 --> 00:01:23,309
+In this demo, the deployed bookstore supports mock member login, product browsing,
+cart interaction, and test checkout. The same workflow adapts to bookings and customer operations.
 
 5
-00:00:56,240 --> 00:01:08,809
-Mock login closes the dialog and changes the header
-into the buyer account.
+00:01:23,309 --> 00:01:32,709
+We used GPT-5.6 for final iteration and validation,
+with OpenAI Codex supporting implementation, testing, and submission evidence.
 
 6
-00:01:08,809 --> 00:01:23,309
-Browse the catalog, open the cart, and arrive at test checkout.
-No real payment is charged.
-
-7
-00:01:23,309 --> 00:01:42,742
-GPT-5.6 supported final iteration and validation.
-OpenAI Codex supported implementation, testing, and submission evidence.
+00:01:32,709 --> 00:01:42,742
+GPT can generate an app. WindWalker helps small-business owners launch, operate, fix,
+and continuously improve it with workflow patterns and lightweight human support.
