@@ -1,29 +1,42 @@
 1
-00:00:00,000 --> 00:00:11,883
-WindWalker is a GPT-powered web app builder
-for small businesses.
+00:00:00,000 --> 00:00:05,100
+WindWalker is a GPT-powered web app builder for small businesses.
 
 2
-00:00:11,883 --> 00:00:31,230
-A user describes the business they want to run: an English digital-content bookstore
-with member login, carts, test checkout, purchase history, downloads, and a seller dashboard.
+00:00:05,100 --> 00:00:12,400
+A user describes the business they want to run: for example,
+a digital bookstore with member login, cart, checkout, and purchase history.
 
 3
-00:00:31,230 --> 00:00:56,240
-WindWalker turns that request into a workflow pattern, generates a responsive preview,
-and lets the user refine it through conversation before deployment to Cloudflare Pages.
+00:00:12,400 --> 00:00:19,150
+The app also includes downloads and an operator dashboard.
 
 4
-00:00:56,240 --> 00:01:23,309
-In this demo, the deployed bookstore supports mock member login, product browsing,
-cart interaction, and test checkout. The same workflow adapts to bookings and customer operations.
+00:00:19,600 --> 00:00:28,850
+WindWalker turns that request into a workflow pattern
+and generates a responsive web app preview.
 
 5
-00:01:23,309 --> 00:01:32,709
+00:00:28,850 --> 00:00:38,330
+It lets the user refine the app through conversation.
+When ready, the app is deployed to Cloudflare Pages as a live URL.
+
+6
+00:00:39,650 --> 00:00:51,300
+In this demo, the deployed bookstore supports mock member login,
+product browsing, cart interaction, and test checkout.
+
+7
+00:00:51,700 --> 00:01:15,900
+The same workflow can be adapted for bookings, quotes, customer intake,
+support, and other small-business operations.
+
+8
+00:01:16,250 --> 00:01:26,400
 We used GPT-5.6 for final iteration and validation,
 with OpenAI Codex supporting implementation, testing, and submission evidence.
 
-6
-00:01:32,709 --> 00:01:42,742
-GPT can generate an app. WindWalker helps small-business owners launch, operate, fix,
-and continuously improve it with workflow patterns and lightweight human support.
+9
+00:01:26,400 --> 00:01:42,742
+GPT can generate an app. WindWalker helps small-business owners launch,
+operate, fix, and continuously improve it with lightweight human support.
