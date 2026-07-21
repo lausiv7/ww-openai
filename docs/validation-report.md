@@ -2,7 +2,7 @@
 
 ## Date
 
-2026-07-19
+2026-07-21
 
 ## Scope
 
@@ -12,13 +12,11 @@ The Devpost candidate was validated through the actual WindWalker builder UI pat
 
 Builder URL: https://ww2.d-tok.com/prototype?builder=1
 
-Generated live URL: https://bc955fd2.windwalker-phase2-user-apps.pages.dev
+Generated live URL: https://0a91cf12.windwalker-phase2-user-apps.pages.dev
 
-Preview gate: `test/results/1114-ui-bookstore-preview-only-2026-07-19-r21-mobile/`
+Builder generation and deployment: `test/results/1116-phase2-live-ui-recording-2026-07-21-r5/`
 
-Full UI deploy smoke: `test/results/1114-ui-bookstore-generate-deploy-smoke-2026-07-19-r21-mobile3/`
-
-Deployed mobile flow: `test/results/1114-ui-bookstore-deployed-flow-2026-07-19-r21-mobile/`
+Deployed mobile flow: `test/results/1117-phase2-live-deployed-flow-2026-07-21-r1/`
 
 Validated:
 
@@ -29,11 +27,9 @@ Validated:
 - visible deploy button is clicked
 - Cloudflare Pages deployment response is captured
 - generated deployment URL opens
-- deployed app shows the same generated React storefront
-- deployed app shows member login UI and test login state transition
-- cart and mock checkout flow are exercised
-- Workspace form accepts a test buyer record
-- Dashboard displays the saved order record after mock payment
+- deployed app shows the generated storefront
+- mock login closes its dialog and changes the header to the buyer account
+- catalog navigation, cart, and test checkout modal are exercised
 
 Screenshots:
 
@@ -42,14 +38,13 @@ Screenshots:
 - `media/screenshots/03-generated-preview.png`
 - `media/screenshots/04-deployed-home.png`
 - `media/screenshots/05-deployed-login-modal.png`
-- `media/screenshots/06-deployed-catalog.png`
-- `media/screenshots/07-deployed-checkout-modal.png`
-- `media/screenshots/08-deployed-dashboard.png`
+- `media/screenshots/06-deployed-signed-in.png`
+- `media/screenshots/07-deployed-test-checkout.png`
 
 Video:
 
-- `media/videos/windwalker-devpost-demo-mobile-final.mp4`
+- `media/videos/windwalker-devpost-live-flow-captioned.mp4`
 
 ## Result
 
-The mobile UI-path preview gate, deployment smoke, and deployed app interaction flow passed. Minor 404 resource warnings in the full smoke are non-blocking static asset requests; the deployed app interaction flow completed without runtime errors. Production credentials and backend service-role code are not included in this repository.
+The actual builder UI generation, deployment response, and deployed app interaction flow passed. The login and checkout flows are explicitly mock/test flows; no production credentials or real payment are required. Production orchestration, service-role code, and private registry data are not included in this repository.

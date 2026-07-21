@@ -9,7 +9,7 @@ The public repository is a sanitized OpenAI Devpost showcase package. It does no
 | Demo | URL | Scope |
 |---|---|---|
 | WindWalker Builder | https://ww2.d-tok.com/prototype?builder=1 | Natural-language app generation, preview, and deployment |
-| Generated Digital Content Bookstore | https://bc955fd2.windwalker-phase2-user-apps.pages.dev | Generated through the WindWalker builder UI; React storefront, test login, cart, mock checkout, and seller dashboard |
+| Generated Digital Content Bookstore | https://0a91cf12.windwalker-phase2-user-apps.pages.dev | Generated and deployed through the WindWalker builder UI; storefront, mock login, cart, and test checkout |
 
 ## Elevator Pitch
 
@@ -57,7 +57,7 @@ examples/   Demo prompts and test accounts
 Main demo video:
 
 ```text
-media/videos/windwalker-devpost-demo-mobile-final.mp4
+media/videos/windwalker-devpost-live-flow-captioned.mp4
 ```
 
 ## Devpost Build Record

@@ -1,0 +1,33 @@
+1
+00:00:00,000 --> 00:00:06,648
+WindWalker turns a natural-language business request
+into a deployed small-business web app.
+
+2
+00:00:06,648 --> 00:00:17,472
+English digital-content bookstore: member login, cart,
+test checkout, purchase history, downloads, and a seller dashboard.
+
+3
+00:00:17,472 --> 00:00:26,136
+The builder generates a responsive app preview beside the conversation.
+That same artifact is used for deployment.
+
+4
+00:00:26,136 --> 00:00:31,464
+Deploy from the builder and open the live Cloudflare Pages URL.
+
+5
+00:00:31,464 --> 00:00:38,496
+Mock login closes the dialog and changes the header
+into the buyer account.
+
+6
+00:00:38,496 --> 00:00:46,608
+Browse the catalog, open the cart, and arrive at test checkout.
+No real payment is charged.
+
+7
+00:00:46,608 --> 00:00:57,480
+GPT-5.6 supported final iteration and validation.
+OpenAI Codex supported implementation, testing, and submission evidence.
