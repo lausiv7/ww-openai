@@ -37,7 +37,8 @@ Natural language -> workflow match -> app artifact -> validation -> deployment -
 
 ## Built With
 
-- GPT/OpenAI-compatible LLM workflow
+- GPT-5.6 for the final Devpost submission iteration and validation notes
+- OpenAI Codex for implementation, repository packaging, validation artifacts, and submission documentation
 - React-style browser app artifacts
 - Supabase-ready auth/data model
 - GCS-ready file storage model
@@ -58,6 +59,10 @@ Main demo video:
 ```text
 media/videos/windwalker-devpost-demo-mobile-final.mp4
 ```
+
+## Devpost Build Record
+
+The final submission pass was completed with GPT-5.6 and OpenAI Codex. The submitted Codex `/feedback` session ID corresponds to that final GPT-5.6 work session. The repository intentionally contains only the public evaluation package: runnable sanitized demos, validation evidence, architecture notes, prompts, and media.
 
 ## Disclosure
 
