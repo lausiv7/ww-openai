@@ -57,7 +57,7 @@ examples/   Demo prompts and test accounts
 Main demo video:
 
 ```text
-media/videos/windwalker-devpost-live-flow-captioned.mp4
+media/videos/windwalker-devpost-live-flow-voice-captioned.mp4
 ```
 
 ## Devpost Build Record

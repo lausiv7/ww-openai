@@ -43,7 +43,7 @@ Screenshots:
 
 Video:
 
-- `media/videos/windwalker-devpost-live-flow-captioned.mp4`
+- `media/videos/windwalker-devpost-live-flow-voice-captioned.mp4`
 
 ## Result
 
